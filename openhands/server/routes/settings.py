@@ -29,6 +29,7 @@ async def load_settings(request: Request) -> GETSettingsModel | None:
             github_token_is_set=token_is_set,
         )
         settings_with_token_data.llm_api_key = settings.llm_api_key
+        settings_with_token_data.daytona_api_key = settings.daytona_api_key
 
         del settings_with_token_data.github_token
         return settings_with_token_data
@@ -79,6 +80,9 @@ async def store_settings(
             if settings.github_token is None:
                 settings.github_token = existing_settings.github_token
 
+            if settings.daytona_api_key is None:
+                settings.daytona_api_key = existing_settings.daytona_api_key
+
             if settings.user_consents_to_analytics is None:
                 settings.user_consents_to_analytics = (
                     existing_settings.user_consents_to_analytics
@@ -123,5 +127,6 @@ def convert_to_settings(settings_with_token_data: POSTSettingsModel) -> Settings
     # Convert the `llm_api_key` and `github_token` to a `SecretStr` instance
     filtered_settings_data['llm_api_key'] = settings_with_token_data.llm_api_key
     filtered_settings_data['github_token'] = settings_with_token_data.github_token
+    filtered_settings_data['daytona_api_key'] = settings_with_token_data.daytona_api_key
 
     return Settings(**filtered_settings_data)

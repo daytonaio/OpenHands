@@ -8,12 +8,14 @@ const extractBasicFormData = (formData: FormData) => {
   const LLM_API_KEY = formData.get("llm-api-key-input")?.toString();
   const AGENT = formData.get("agent")?.toString();
   const LANGUAGE = formData.get("language")?.toString();
+  const DAYTONA_API_KEY = formData.get("daytona-api-key-input")?.toString();
 
   return {
     LLM_MODEL,
     LLM_API_KEY,
     AGENT,
     LANGUAGE,
+    DAYTONA_API_KEY,
   };
 };
 
@@ -48,7 +50,7 @@ const extractAdvancedFormData = (formData: FormData) => {
 };
 
 export const extractSettings = (formData: FormData): Partial<Settings> => {
-  const { LLM_MODEL, LLM_API_KEY, AGENT, LANGUAGE } =
+  const { LLM_MODEL, LLM_API_KEY, AGENT, LANGUAGE, DAYTONA_API_KEY } =
     extractBasicFormData(formData);
 
   const {
@@ -68,5 +70,6 @@ export const extractSettings = (formData: FormData): Partial<Settings> => {
     CONFIRMATION_MODE,
     SECURITY_ANALYZER,
     ENABLE_DEFAULT_CONDENSER,
+    DAYTONA_API_KEY,
   };
 };

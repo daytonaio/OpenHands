@@ -10,6 +10,7 @@ export type Settings = {
   GITHUB_TOKEN_IS_SET: boolean;
   ENABLE_DEFAULT_CONDENSER: boolean;
   USER_CONSENTS_TO_ANALYTICS: boolean | null;
+  DAYTONA_API_KEY: string | null;
 };
 
 export type ApiSettings = {
@@ -24,16 +25,19 @@ export type ApiSettings = {
   github_token_is_set: boolean;
   enable_default_condenser: boolean;
   user_consents_to_analytics: boolean | null;
+  daytona_api_key: string | null;
 };
 
 export type PostSettings = Settings & {
   github_token: string;
   unset_github_token: boolean;
   user_consents_to_analytics: boolean | null;
+  daytona_api_key: string | null;
 };
 
 export type PostApiSettings = ApiSettings & {
   github_token: string;
   unset_github_token: boolean;
   user_consents_to_analytics: boolean | null;
+  daytona_api_key: string | null;
 };

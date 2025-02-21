@@ -109,6 +109,7 @@ function AccountSettings() {
       {
         github_token:
           formData.get("github-token-input")?.toString() || undefined,
+        daytona_api_key: formData.get("daytona-api-key-input")?.toString() || "",
         LANGUAGE: languageValue,
         user_consents_to_analytics: userConsentsToAnalytics,
         ENABLE_DEFAULT_CONDENSER: enableMemoryCondenser,
@@ -322,6 +323,26 @@ function AccountSettings() {
                 />
               </div>
             )}
+          </section>
+
+          <section className="flex flex-col gap-6">
+            <h2 className="text-[28px] leading-8 tracking-[-0.02em] font-bold">
+              Daytona Settings
+            </h2>
+            <SettingsInput
+              testId="daytona-api-key-input"
+              name="daytona-api-key-input"
+              label="Daytona API Key"
+              type="password"
+              className="w-[680px]"
+            />
+
+            <HelpLink
+              testId="daytona-api-key-help-anchor"
+              text="Get your Daytona API key"
+              linkText="here"
+              href="https://app.daytona.io/dashboard/keys"
+            />
           </section>
 
           <section className="flex flex-col gap-6">

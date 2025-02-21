@@ -21,6 +21,7 @@ export const MOCK_DEFAULT_USER_SETTINGS: ApiSettings | PostApiSettings = {
   github_token_is_set: DEFAULT_SETTINGS.GITHUB_TOKEN_IS_SET,
   enable_default_condenser: DEFAULT_SETTINGS.ENABLE_DEFAULT_CONDENSER,
   user_consents_to_analytics: DEFAULT_SETTINGS.USER_CONSENTS_TO_ANALYTICS,
+  daytona_api_key: "",
 };
 
 const MOCK_USER_PREFERENCES: {

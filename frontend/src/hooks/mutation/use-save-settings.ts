@@ -21,6 +21,7 @@ const saveSettingsMutationFn = async (settings: Partial<PostSettings>) => {
     unset_github_token: settings.unset_github_token,
     enable_default_condenser: settings.ENABLE_DEFAULT_CONDENSER,
     user_consents_to_analytics: settings.user_consents_to_analytics,
+    daytona_api_key: settings.daytona_api_key,
   };
 
   await OpenHands.saveSettings(apiSettings);

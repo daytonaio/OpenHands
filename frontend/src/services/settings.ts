@@ -14,6 +14,7 @@ export const DEFAULT_SETTINGS: Settings = {
   GITHUB_TOKEN_IS_SET: false,
   ENABLE_DEFAULT_CONDENSER: true,
   USER_CONSENTS_TO_ANALYTICS: false,
+  DAYTONA_API_KEY: "",
 };
 
 /**

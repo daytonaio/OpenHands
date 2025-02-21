@@ -23,6 +23,7 @@ export interface InitConfig {
   token?: string;
   github_token?: string;
   latest_event_id?: unknown; // Not sure what this is
+  daytona_api_key?: string;
 }
 
 // Bare minimum event type sent from the client

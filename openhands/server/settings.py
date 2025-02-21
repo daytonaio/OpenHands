@@ -24,6 +24,7 @@ class Settings(BaseModel):
     github_token: SecretStr | None = None
     enable_default_condenser: bool = False
     user_consents_to_analytics: bool | None = None
+    daytona_api_key: SecretStr | None = None
 
     @field_serializer('llm_api_key')
     def llm_api_key_serializer(self, llm_api_key: SecretStr, info: SerializationInfo):
@@ -54,6 +55,23 @@ class Settings(BaseModel):
 
         return pydantic_encoder(github_token)
 
+    @field_serializer('daytona_api_key')
+    def daytona_api_key_serializer(
+        self, daytona_api_key: SecretStr | None, info: SerializationInfo
+    ):
+        """Custom serializer for the Daytona API key.
+
+        To serialize the key instead of ********, set expose_secrets to True in the serialization context.
+        """
+        if daytona_api_key is None:
+            return None
+
+        context = info.context
+        if context and context.get('expose_secrets', False):
+            return daytona_api_key.get_secret_value()
+
+        return pydantic_encoder(daytona_api_key)
+
     @staticmethod
     def from_config() -> Settings | None:
         app_config = load_app_config()
@@ -73,6 +91,7 @@ class Settings(BaseModel):
             llm_base_url=llm_config.base_url,
             remote_runtime_resource_factor=app_config.sandbox.remote_runtime_resource_factor,
             github_token=None,
+            daytona_api_key=None,
         )
         return settings
 
@@ -86,11 +105,16 @@ class POSTSettingsModel(Settings):
     github_token: str | None = (
         None  # This is a string because it's coming from the frontend
     )
+    daytona_api_key: str | None = None
 
     # Override the serializer for the GitHub token to handle the string input
     @field_serializer('github_token')
     def github_token_serializer(self, github_token: str | None):
         return github_token
+
+    @field_serializer('daytona_api_key')
+    def daytona_api_key_serializer(self, daytona_api_key: str | None):
+        return daytona_api_key
 
 
 class GETSettingsModel(Settings):
